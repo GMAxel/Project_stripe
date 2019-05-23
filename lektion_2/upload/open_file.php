@@ -17,6 +17,7 @@
 
 <?php
 // Open and read file, store values in array.
+phpinfo();
 echo "<h1>Files</h1>";
 if (isset($_FILES)) {
     var_dump($_FILES['books_file']);
