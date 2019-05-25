@@ -1,0 +1,20 @@
+.log_in_container {
+    display:none;
+    position:absolute;
+    left:0;
+    padding:0;
+    margin:0;
+    list-style-type:none;
+    background-color:rgb(247, 247, 252);
+}
+
+body {
+    background-color:rgb(231, 214, 214);
+}
+.log_in_link:hover .log_in_container {
+    display:block;
+}
+
+.log_in_wrapper {
+    position:relative;
+}

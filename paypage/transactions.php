@@ -20,6 +20,8 @@
     <title>View Transactions</title>
 </head>
 <body>
+<?php require_once('../layout/header/header.php'); ?>   
+
  <div class="container mt-4">
     <div class="btn-group" role="group">
         <a href="customers.php" class="btn btn-secondary">Customers</a>
