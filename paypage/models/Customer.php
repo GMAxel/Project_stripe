@@ -1,4 +1,7 @@
 <?php
+require_once('vendor/init.php');
+require_once('config/db.php');
+
 class Customer {
     private $db;
     private $pdo;
@@ -80,13 +83,15 @@ class Customer {
         }
     }
 
-    public function getCustomers() {
-        $this->db->query('SELECT * FROM customers ORDER BY first_name ASC');
-        $results = $this->db->resultset();
-        
-        return $results;
+    public function getCustomer() {
+        $id = $_SESSION['customer_id'];
+        $sql = "SELECT * FROM $this->table WHERE id = :id ORDER BY id DESC";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindValue('id', $id);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_OBJ);
+        return $result;
     }
-
     public function login() 
     {
         // Get values

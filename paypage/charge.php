@@ -6,20 +6,11 @@ require_once('lib/pdo_db.php');
 require_once('models/Customer.php');
 require_once('models/Transaction.php');
 
-
-
 \Stripe\Stripe::setApiKey('sk_test_mblcMK40UNMGgKaV6L91oWT8008qrOEmP5');
-
 
 // Sanitize POST Array
 $POST = filter_var_array($_POST, FILTER_SANITIZE_STRING);
-
-// function filter_post_input($input_name) {
-//     return filter_input(INPUT_POST, $input_name, FILTER_SANITIZE_STRING)
-// }
-
 $token = $POST['stripeToken'];
-
 $stripe_id = $_SESSION['stripe_id'];
 
 if($stripe_id) {

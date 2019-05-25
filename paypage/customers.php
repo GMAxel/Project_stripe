@@ -1,4 +1,5 @@
 <?php
+    session_start();
     require_once('config/db.php');
     require_once('lib/pdo_db.php');
     require_once('models/Customer.php');
@@ -7,7 +8,7 @@
     $customer = new Customer();
 
     // get Customers
-    $customers = $customer->getCustomers();
+    $customers = $customer->getCustomer();
 ?>
 
 <!DOCTYPE html>
