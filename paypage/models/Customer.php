@@ -4,6 +4,7 @@ class Customer {
     private $pdo;
     protected $table = 'customers';
     protected $fields = null;
+    public $id = null;
     public $response = [
         'message' => ''
         // 'status' => false
@@ -16,11 +17,36 @@ class Customer {
         $this->fields = array_column($this->getFields(), 'Field');
     }
 
-    public function update_customer() 
+    public function update_customer($stripe_id) 
     {
         /**
          * Kanske ska hämta de inputs som användaren skrev i och uppdatera de i db?
          */
+        // Customer
+        $id = $_SESSION['customer_id'];
+        $sql = "UPDATE $this->table SET stripe_id = :stripe_id WHERE id = $id";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindValue('stripe_id', $stripe_id);
+        $stmt->execute();
+
+        // Update customer and set session stripe id.
+        if($stmt->rowCount()) {
+            // Session Customer
+            $id = $_SESSION['customer_id'];
+            // Sql 
+            $sql = "SELECT stripe_id FROM customers WHERE id = :id";
+            // Prepare
+            $get_id = $this->pdo->prepare($sql);
+            // Bind
+            $get_id->bindValue('id', $id);
+            // Execite
+            $get_id->execute();
+            $result = $get_id->fetchColumn();
+            $_SESSION['stripe_id'] = $result; 
+            echo $_SESSION['stripe_id'];
+        }
+
+        return $stmt->rowCount() ? true : false;
     }
 
     public function getFields()
@@ -104,6 +130,13 @@ class Customer {
             $this->response['message'] = 'Fel lösenord - ta bort detta senare'; 
             return false;
         } else {
+            $_SESSION['stripe_id'] = $result->stripe_id;
+            $_SESSION['customer_id'] = $result->id; 
+            $_SESSION['first_name'] = $result->first_name;        
+            $_SESSION['last_name'] = $result->last_name;
+            $_SESSION['email'] = $result->email;        
+        
+       
             return true;
         }
     }
@@ -233,6 +266,5 @@ class Customer {
         } else {
             return $valid_email;
         }       
-    }
-    
+    }   
 }

@@ -1,3 +1,13 @@
+<?php
+session_start();
+require_once('config/db.php');
+require_once('lib/pdo_db.php');
+require_once('models/Customer.php');
+var_dump($_SESSION['customer_id']);
+var_dump($_SESSION['stripe_id']);
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

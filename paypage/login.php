@@ -1,5 +1,5 @@
 <?php
-    // session_start();
+    session_start();
     require_once('config/db.php');
     require_once('lib/pdo_db.php');
     require_once('models/Customer.php');
@@ -16,6 +16,9 @@
     if(isset($_POST['login'])) {
         if(!$customer->login()) {
             $message = $customer->response['message'];
+        } else {
+            echo "log in success";
+            var_dump($_SESSION);
         }
      }
 ?>
@@ -36,7 +39,7 @@
     <?php require_once('../layout/header/header.php'); ?>   
 
     <div id="container" class="container">
-        <h2 class="my-4 text-center">Create Account</h2>
+        <h2 class="my-4 text-center">Log In</h2>
 
 
         <!-- <h1 class="my-4 text-center">Book Info</h1> -->
