@@ -20,16 +20,18 @@ class Customer {
         $this->fields = array_column($this->getFields(), 'Field');
     }
 
-    public function update_customer($stripe_id) 
+    public function update_customer($licenses, $stripe_id) 
     {
         /**
          * Kanske ska hämta de inputs som användaren skrev i och uppdatera de i db?
          */
         // Customer
         $id = $_SESSION['customer_id'];
-        $sql = "UPDATE $this->table SET stripe_id = :stripe_id WHERE id = $id";
+        $sql = "UPDATE $this->table SET stripe_id = :stripe_id, 
+        licenses = :licenses WHERE id = $id";
         $stmt = $this->pdo->prepare($sql);
         $stmt->bindValue('stripe_id', $stripe_id);
+        $stmt->bindValue('licenses', $licenses);
         $stmt->execute();
 
         // Update customer and set session stripe id.
@@ -57,7 +59,7 @@ class Customer {
         $fields = $this->pdo->query("SHOW COLUMNS FROM $this->table;")->fetchAll();
         $filtered_fields = [];
         foreach($fields as $field) {
-            if($field['Field'] !== 'id' && $field['Field'] !== 'stripe_id') {
+            if($field['Field'] !== 'id' && $field['Field'] !== 'stripe_id' && $field['Field'] !== 'licenses') {
                 $filtered_fields[]= $field;
             }
         }
@@ -154,7 +156,7 @@ class Customer {
         // Prepare query
         $stmt = $this->pdo->prepare($sql);
         // Bind Values
-        foreach($this->getFields() as $field) {  
+        foreach($this->getFields() as $field) { 
             // Store DB-field and use it to fetch elements. 
             $param  = $field['Field']; 
             echo "<h2>$param</h2>";
@@ -206,8 +208,8 @@ class Customer {
             // Bind value
             echo "<h2>$value</h2>";
             $stmt->bindValue($param, $value, $pdo_type);            
+        
         }
-
         // Execute query and return result.
         // die;
         return $stmt->execute();

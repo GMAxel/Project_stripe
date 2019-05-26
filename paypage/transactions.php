@@ -45,7 +45,7 @@
             <?php foreach($transactions as $t): ?>
             <tr>
                 <td><?php echo $t->stripe_charge_id ?></td>
-                <td><?php echo $t->product ?></td>
+                <td><?php echo $t->name ?></td>
                 <td><?php echo sprintf('%.2f', $t->amount / 100) .
                  ' ' .  strtoupper($t->currency) ?> 
                 </td>
