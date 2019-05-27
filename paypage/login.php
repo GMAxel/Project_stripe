@@ -40,14 +40,17 @@
 
     <div id="container" class="container">
         <h2 class="my-4 text-center">Log In</h2>
-
-
-        <!-- <h1 class="my-4 text-center">Book Info</h1> -->
         <form method="post">
-            <input type="text"      name="user"     class="form-control mt-3 mb-3 StripElement StripeElement--empty" placeholder="Username">
-            <input type="password"  name="pass"     class="form-control mb-3 StripElement StripeElement--empty" placeholder="Password">
-            <input type="submit"    name="login"    class="form-control mb-3 StripElement StripeElement--empty" value="Log in">
+            <div class="row">
+                <div class="form-group col-xs-3">
+                    <input type="text"      name="user"     class="form-control mt-3 mb-3 StripElement StripeElement--empty" placeholder="Username">
+                    <input type="password"  name="pass"     class="form-control mb-3 StripElement StripeElement--empty" placeholder="Password">
+                    <input type="submit"    name="login"    class="form-control mb-3 StripElement StripeElement--empty" value="Log in">
+                </div>
+            </div>
         </form>
+        <!-- <h1 class="my-4 text-center">Book Info</h1> -->
+        
     </div>    
 </body>
 </html>

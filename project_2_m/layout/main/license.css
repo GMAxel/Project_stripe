@@ -1,0 +1,14 @@
+.container { margin-top: 100px; }
+.card { width: 500px; margin-left:80%; }
+.list-group-item {
+    border:0px;
+    padding:5px;
+}
+.price {
+    font-size: 72px;
+}
+.currency {
+    position:relative;
+    font-size:25px;
+    top: -31px;
+}

@@ -1,4 +1,13 @@
+<?php
+    session_start();
+    require_once('classes/Customer.php');
+    // Instatiate customer
+    $customer = new Customer();
 
+    if(isset($_POST['createAcc'])) {
+        $customer->create_account();
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,11 +15,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="layout/main/create_account.css">
+    <link rel="stylesheet" href="layout/nav/nav.css">
+
     <title>Document</title>
 </head>
 <body>
-<?php require_once('../layout/navbar/navbar.php'); ?>   
+<?php require_once('layout/nav/nav.php'); ?>   
 
     <!-- <div class="container"> -->
         <h2 class="my-4 text-center">Create Account</h2>
@@ -42,20 +53,23 @@
             </div>
             <div class="form-group">
                 <label for="username">Username</label>
-                <input type="text" name="user" id="username" class="form-control" required>        
+                <input type="text" name="username" id="username" class="form-control" required>        
                 <div class="invalid-feedback">Please enter a valid username</div>
 
             </div>
             <div class="form-group">
                 <label for="password">Password</label>
-                <input type="pass" name="pass" id="password" class="form-control" required>
+                <input type="password" name="password" id="password" class="form-control" required>
             </div>
             <div class="form-check">
                 <input type="checkbox" id="accept-terms" class="form-check-input" required>
                 <label for="accept_terms" class="form-check-label">Accept Terms & Conditions</label>
             </div>
-            <button type="submit" class="mt-3 btn btn-primary">Submit
+            <button type="submit" name="createAcc" class="mt-3 btn btn-primary">Create Account
             </button>
+            <p class="mt-3"><?php if(isset($customer->response)) { echo $customer->response; } ?></p>
+            <p class="mt-3"><a href="login.php">Log In</a></p>
+
         </form>    
         <script>
             var form = document.querySelector('.needs-validation');
@@ -69,9 +83,5 @@
             });
             </script>
 
-            <!-- header -->
-            <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </body>
 </html>

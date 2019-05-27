@@ -1,23 +1,9 @@
 <?php
-    // session_start();
-    require_once('config/db.php');
-    require_once('lib/pdo_db.php');
-    require_once('models/Customer.php');
+    session_start();
+    require_once('classes/Customer.php');
 
     // Instatiate customer
     $customer = new Customer();
-
-    if(isset($_POST['createAcc'])) {
-        if(!$customer->create_account()) {
-            echo $customer->response['message'];
-        }
-    }
-    
-    if(isset($_POST['login'])) {
-        if(!$customer->login()) {
-            $message = $customer->response['message'];
-        }
-     }
 ?>
 
 <!DOCTYPE html>
@@ -28,12 +14,12 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Log in</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" href="../layout/header/header.css">
+    <link rel="stylesheet" href="layout/nav/nav.css">
 
 
 </head>
 <body>
-    <?php require_once('../layout/header/header.php'); ?>   
+    <?php require_once('layout/nav/nav.php'); ?>   
 
     <div id="container" class="container">
         <h1 class="my-4 text-center">Home</h1>
@@ -58,6 +44,7 @@
         <h2 class="my-4">Why do we do it?</h2>
         <p> School assignment :) :) :)
         </p>
-    </div>    
-</body>
+    </div> 
+    <?php require_once('layout/footer/footer.php'); ?>      
+    </body>
 </html>

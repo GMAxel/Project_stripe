@@ -9,10 +9,7 @@ class Product {
     protected $table = 'products';
     protected $fields = null;
     public $id = null;
-    public $response = [
-        'message' => ''
-        // 'status' => false
-    ];
+    public $response;
 
 
     public function __construct() {

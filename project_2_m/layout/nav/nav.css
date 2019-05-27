@@ -1,0 +1,33 @@
+.log-in-wrapper {
+    position:relative;
+}
+.log-in-hover:hover .log-in-container  {
+    display:block;
+}
+.log-in-container {
+    display:none;
+    box-sizing: border-box;
+    border-bottom:0.5px solid black;
+    border-left:0.5px solid black;
+    border-right:0.5px solid black;
+    border-radius: 0 0 20px 20px;
+    position:absolute;
+    min-width:220px;
+    background-color: #f8f9fa!important;
+    left:0;
+    padding-top:18px;
+}
+.flex-container {
+    display:flex;
+    list-style-type: none;
+    padding:0;
+    margin-right:5%;
+    height:40px;
+    padding-top:7px;
+}
+.flex-container a {
+    color:rgba(0,0,0,.9);
+    font-size: 1rem;
+    font-weight: 400;
+
+}
