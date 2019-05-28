@@ -1,8 +1,10 @@
 <?php
     session_start();
     require_once('classes/Product.php');
+    require_once('classes/Customer.php');
     $product = new Product();
     $products = $product->getProducts();
+    $customer = new Customer();
 ?>
 <!DOCTYPE html>
 <html lang="en">

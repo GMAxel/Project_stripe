@@ -1,12 +1,9 @@
 <?php
     if(isset($_POST['login'])) {
-        var_dump($customer);
         if(!$customer->login()) {
             $message = $customer->response;
             echo $message;
         } else {
-            echo "log in success";
-            var_dump($_SESSION);
         }
      }
      if(isset($_GET['logout'])) {
@@ -29,14 +26,11 @@
                 <a href="licenses.php" class="nav-link">Licenses</a>
             </li>
             <li class="nav-item">
-                <a href="#" class="nav-link">Upload CSV</a>
-            </li>
-            <li class="nav-item">
-                <a href="#" class="nav-link">Documentation</a>
+                <a href="upload_csv.php" class="nav-link">Upload CSV</a>
             </li>
             <?php if(isset($_SESSION['customer_id'])) { ?>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">My Account</a>
+                    <a href="my_account.php" class="nav-link">My Account</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="index.php?logout">Log Out</a>

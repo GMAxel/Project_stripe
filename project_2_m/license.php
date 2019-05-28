@@ -1,9 +1,11 @@
 <?php
     session_start();
     require_once('classes/Product.php');
+    require_once('classes/Customer.php');
     $product_obj = new Product();
     $id = $_GET['id'];
     $product = $product_obj->getProduct($id);
+    $customer = new Customer();
 ?>
 <!DOCTYPE html>
 <html lang="en">

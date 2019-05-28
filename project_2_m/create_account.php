@@ -6,6 +6,7 @@
 
     if(isset($_POST['createAcc'])) {
         $customer->create_account();
+        header('Location: login.php');
     }
 ?>
 <!DOCTYPE html>
@@ -31,7 +32,7 @@
                     <div class="form-group">
                         <label for="firstname">First Name</label>
                         <input type="text" name="first_name" id="firstname" class="form-control" required>        
-                        <div class="invalid-feedback">Enter your firstname</div>
+                        <div class="invalid-feedback">Enter your first name</div>
                         <div class="valid-feedback">Accepted</div>
                     </div>
                 </div>
@@ -39,7 +40,7 @@
                     <div class="form-group">
                         <label for="last_name">Last Name</label>
                         <input type="text" name="last_name" id="last_name" class="form-control" required>        
-                        <div class="invalid-feedback">Not valid input</div>
+                        <div class="invalid-feedback">Enter your last name</div>
                         <div class="valid-feedback">Accepted</div>
                     </div>
                 </div>
@@ -48,7 +49,7 @@
             <div class="form-group">
                 <label for="email">Email</label>
                 <input type="text" name="email" id="email" class="form-control" required>        
-                <div class="invalid-feedback">Please enter a valid username</div>
+                <div class="invalid-feedback">Please enter a valid email</div>
 
             </div>
             <div class="form-group">

@@ -35,14 +35,33 @@
         Then for each purchased license you can retrieve information about
         one book.
         <ol>
-            <li> Create Account <a href="#"> here</a></li>
-            <li> Log In <a href="#"> here </a></li>
-            <li> Purchase license <a href="#">here</a></li>
-            <li> Upload CSV-file <a href="#">here</a></li>
+            <li> Create Account <a href="create_account.php"> here</a></li>
+            <li> Log In <a href="login.php"> here </a></li>
+            <li> Purchase license <a href="licenses.php">here</a></li>
+            <li> Upload CSV-file <a href="upload_csv.php">here</a></li>
         </ol>
         </p>
         <h2 class="my-4">Why do we do it?</h2>
-        <p> School assignment :) :) :)
+        <p>
+            ────────────────────────────────── <br>
+            ─────────▄▄───────────────────▄▄── <br>
+            ──────────▀█───────────────────▀█─ <br>
+            ──────────▄█───────────────────▄█─ <br>
+            ──█████████▀───────────█████████▀─ <br>
+            ───▄██████▄─────────────▄██████▄── <br>
+            ─▄██▀────▀██▄─────────▄██▀────▀██▄ <br>
+            ─██────────██─────────██────────██ <br>
+            ─██───██───██─────────██───██───██ <br>
+            ─██────────██─────────██────────██ <br>
+            ──██▄────▄██───────────██▄────▄██─ <br>
+            ───▀██████▀─────────────▀██████▀── <br>
+            ────────────────────────────────── <br>
+            ────────────────────────────────── <br>
+            ────────────────────────────────── <br>
+            ───────────█████████████────────── <br>
+            ────────────────────────────────── <br>
+            ────────────────────────────────── <br>
+
         </p>
     </div> 
     <?php require_once('layout/footer/footer.php'); ?>      

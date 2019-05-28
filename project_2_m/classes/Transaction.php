@@ -22,10 +22,10 @@ class Transaction {
         $stmt = $this->pdo->prepare($sql);
 
         // bind values
-        $stmt->bindValue(':stripe_charge_id', $data['id']);
+        $stmt->bindValue(':stripe_charge_id', $data['order_id']);
         $stmt->bindValue(':stripe_cus_id', $data['customer_id']); 
         $stmt->bindValue(':product', $data['product']);
-        $stmt->bindValue(':amount', $data['amount']);
+        $stmt->bindValue(':amount', ($data['amount']/100));
         $stmt->bindValue(':currency', $data['currency']);
         $stmt->bindValue(':status', $data['status']);
         $stmt->bindValue(':created_at', date("Y-m-d H:i:s"));

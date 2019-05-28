@@ -7,7 +7,7 @@ class Customer
     protected $table = 'customers';
     protected $fields = null;
     public $id = null;
-    public $reponse = null;
+    public $response = null;
     public $logged_in = null;
 
     /**
@@ -176,9 +176,7 @@ class Customer
             }
             if($param === 'password') {
                 $value = password_hash($value, PASSWORD_DEFAULT);
-            }
-            var_dump($value);
-            
+            }            
             // Check values
             if(strlen($value) < 1) {
                 $this->response = "Fill all the inputs";
@@ -215,17 +213,27 @@ class Customer
      * stripe id. Stripe id should only be changed if
      * they aren't already a customer.
      */
-    public function update_customer($licenses, $stripe_id) 
+    public function update_customer($licenses, $stripe_id = null) 
     {
         $id = $_SESSION['customer_id'];
-        $sql = "UPDATE $this->table 
-                SET stripe_id = :stripe_id, 
-                licenses = :licenses 
-                WHERE id = $id";
-        $stmt = $this->pdo->prepare($sql);
-        $stmt->bindValue('stripe_id', $stripe_id);
-        $stmt->bindValue('licenses', $licenses);
-        $stmt->execute();
+
+        if ($stripe_id === null) {
+            $sql = "UPDATE $this->table 
+                    SET licenses = licenses + :licenses 
+                    WHERE id = $id";
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->bindValue('licenses', $licenses);
+            $stmt->execute();
+        } else {
+            $sql = "UPDATE $this->table 
+                    SET stripe_id = :stripe_id, 
+                    licenses = licenses + :licenses
+                    WHERE id = $id";
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->bindValue('stripe_id', $stripe_id);
+            $stmt->bindValue('licenses', $licenses);
+            $stmt->execute();
+        }
 
         // Update customer and set session stripe id.
         if($stmt->rowCount()) {
@@ -244,6 +252,34 @@ class Customer
             echo $_SESSION['stripe_id'];
         }
         return $stmt->rowCount() ? true : false;
+    }
+
+    public function remove_license($licenses) 
+    {
+        $id = $_SESSION['customer_id'];        
+
+        $pre_sql = "SELECT licenses FROM $this->table
+                WHERE id = :id";
+        $pre_stmt = $this->pdo->prepare($pre_sql);
+        $pre_stmt->bindValue('id', $id);
+        $pre_stmt->execute();
+        $license_saldo = $pre_stmt->fetchColumn();
+
+        if($license_saldo < $licenses) {
+            $this->response = 'You currently have ' . $license_saldo . 
+            ' licenses, and you are trying to use ' . $licenses . 
+            ' licenses <br><a href="licenses.php">Buy some more</a>';
+            return false;
+        } else {
+            $sql = "UPDATE $this->table 
+                SET licenses = licenses - :licenses 
+                WHERE id = :id";
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->bindValue('licenses', $licenses);
+            $stmt->bindValue('id', $id);
+            $stmt->execute();
+            return true;
+        }
     }
 
 

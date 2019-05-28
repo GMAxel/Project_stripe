@@ -33,8 +33,6 @@ if(!$customer_to_charge) {
     ));
     // Set customer to charge. 
     $customer_to_charge = $customer->id;
-
-    var_dump($customer);
 }
 $charge = \Stripe\Charge::create(array(
     "amount" => $product->price,
@@ -50,8 +48,13 @@ if($charge->status !== 'succeeded') {
 
 // Instantiate Customer
 $customer = new Customer();
-// Store bought licenses in DB
-$customer->update_customer($product->nrOfBooks, $customer_to_charge);
+// Store bought licenses in DB - If we just created stripe account,
+// Then store stripe_id. If not, send in null.
+if(is_null($user)) {
+    $customer->update_customer($product->nrOfBooks, $customer_to_charge);
+} else {
+    $customer->update_customer($product->nrOfBooks);
+}
 
 // Refund if no goodio https://stripe.com/docs/refunds
 // // Set your secret key: remember to change this to your live secret key in production
@@ -64,7 +67,7 @@ $customer->update_customer($product->nrOfBooks, $customer_to_charge);
 
 // Transaction Data
 $transactionData = [
-    'id' => $charge->id,
+    'order_id' => $charge->id,
     'customer_id' => $charge->customer,
     'product' => $product->id,
     'amount' => $charge->amount,
@@ -81,5 +84,5 @@ if(!$trans) {
     echo $transaction->response;
 } else {
 // Redirect to success
-header('Location: success.php?tid='.$charge->id.'& product='.$charge->description);
+header('Location: success.php?tid='.$charge->id.'&product='.$charge->description);
 }

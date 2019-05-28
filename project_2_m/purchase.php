@@ -9,7 +9,7 @@ echo $id;
 $product_obj = new Product();
 $product = $product_obj->getProduct($id);
 var_dump($product);
-
+$customer = new Customer();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -40,7 +40,7 @@ var_dump($product);
                 <tr>
                     <td><?php echo $product->name ?></td>
                     <td><?php echo $product->nrOfBooks ?></td>
-                    <td><?php echo ($product->price/10) ?>kr</td>
+                    <td><?php echo ($product->price/100) ?>kr</td>
                 </tr>
             </tbody>
     </table>

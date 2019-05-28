@@ -63,6 +63,7 @@
                 form.classList.add('was-validated')
             });
             </script>
+            <?php require_once('layout/footer/footer.php'); ?>      
 
 </body>
 </html>

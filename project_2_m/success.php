@@ -1,5 +1,8 @@
 <?php
     session_start();
+    require_once('classes/Customer.php');
+    $customer = new Customer();
+
     if(!empty($_GET['tid']) && !empty($_GET['product'])) {
         $GET = filter_var_array($_GET, FILTER_SANITIZE_STRING);
 
@@ -24,7 +27,7 @@
     <hr>
     <p> Your transaction ID is <?php echo $tid; ?></p>
     <p> Check your email for more info </p>
-    <p> <a href="index.php" class="btn btn-light mt-2">Go Back</a></p>
+    <p> <a href="index.php" class="btn btn-light mt-2">Go Home</a></p>
  </div>
     
 </body>
