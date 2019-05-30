@@ -1,20 +1,13 @@
 <?php
 session_start();
-
 if(!isset($_SESSION['customer_id'])) {
     header("Location: login.php");  
 }
-
 require_once('classes/Customer.php');
 require_once('classes/Product.php');
-
-var_dump($_SESSION['customer_id']);
-var_dump($_SESSION['stripe_id']);
 $id = $_GET['id'];
-echo $id;
 $product_obj = new Product();
 $product = $product_obj->getProduct($id);
-var_dump($product);
 $customer = new Customer();
 ?>
 <!DOCTYPE html>
@@ -24,10 +17,8 @@ $customer = new Customer();
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" href="layout/main/purchase.css">
-
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   <title>Pay Page</title>
-
 </head>
 <body>
 <?php require_once('layout/nav/nav.php'); ?>   
@@ -62,13 +53,11 @@ $customer = new Customer();
                 <!-- Used to display form errors. -->
             </div>
         </div>
-
         <button>Submit Payment</button>
     </form>
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://js.stripe.com/v3/"></script>
 <script src="./js/charge.js"></script>
-
 </body>
 </html>

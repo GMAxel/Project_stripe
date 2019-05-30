@@ -2,7 +2,6 @@
     if(isset($_POST['login'])) {
         if(!$customer->login()) {
             $message = $customer->response;
-            echo $message;
         } else {
         }
      }

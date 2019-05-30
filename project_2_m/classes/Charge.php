@@ -5,11 +5,17 @@ require_once('classes/Customer.php');
 require_once('classes/Transaction.php');
 require_once('classes/Product.php');
 
+/**
+ * Class charge isn't yet used
+ */
 class Charge {
     private $pdo;
     public $response;
     public $customer;
 
+    /**
+     * 
+     */
     public function __construct() 
     {
         $db = new Database;

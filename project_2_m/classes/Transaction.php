@@ -13,14 +13,15 @@ class Transaction {
         $this->pdo = $this->db->pdo;
     }
 
+    /**
+     * Inserts transaction data in DB.
+     */
     public function addTransaction($data) {
         // Sql query
         $sql = "INSERT INTO $this->table (stripe_charge_id, stripe_cus_id, product_id, amount, currency, status, created_at)
         VALUES(:stripe_charge_id, :stripe_cus_id, :product, :amount, :currency, :status, :created_at)";
-
         // Prepare
         $stmt = $this->pdo->prepare($sql);
-
         // bind values
         $stmt->bindValue(':stripe_charge_id', $data['order_id']);
         $stmt->bindValue(':stripe_cus_id', $data['customer_id']); 
@@ -29,7 +30,6 @@ class Transaction {
         $stmt->bindValue(':currency', $data['currency']);
         $stmt->bindValue(':status', $data['status']);
         $stmt->bindValue(':created_at', date("Y-m-d H:i:s"));
-
         // execute
         if($stmt->execute()) {
             $this->response = 'Transaction Complete';
@@ -39,6 +39,9 @@ class Transaction {
             return false;
         }
     }
+    /**
+     * Returns customers transaction history.
+     */
     public function getTransactions() {
         if(is_null($cus_stripe_id = $_SESSION['stripe_id'])) {
             $this->response = "You haven't purchased anything.";

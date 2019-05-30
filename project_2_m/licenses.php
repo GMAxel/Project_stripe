@@ -16,17 +16,11 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="layout/main/licenses.css">
     <link rel="stylesheet" href="layout/nav/nav.css">
-    <style type="text/css">
-      
-
-    </style>
 </head>
 <body>
     <?php require_once('layout/nav/nav.php'); ?>   
-
     <div class="container">
         <h1 class="my-5 text-center">Offers</h1>
-
         <?php 
             $colNum = 1;
             foreach($products as $product) {
@@ -64,11 +58,9 @@
                 } else {
                     $colNum++;
                 }
-
             }
         ?>  
     </div>
-
     <?php require_once('layout/footer/footer.php'); ?>      
 </body>
 </html> 
