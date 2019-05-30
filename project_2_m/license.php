@@ -6,6 +6,7 @@
     $id = $_GET['id'];
     $product = $product_obj->getProduct($id);
     $customer = new Customer();
+    var_dump($_SESSION['customer_id']);
 ?>
 <!DOCTYPE html>
 <html lang="en">
