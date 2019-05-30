@@ -19,7 +19,6 @@
             header("Location: index.php"); 
         }
     }
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -36,36 +35,32 @@
 <body>
 <?php require_once('layout/nav/nav.php'); ?>   
 
-    <!-- <div class="container"> -->
-        <h2 class="my-4 text-center">Log In</h2>
-        <form method="post" action="" class="create_acc_form needs-validation" novalidate>  
-            <div class="form-group">
-                <label for="username">Username</label>
-                <input type="text" name="user" id="username" class="form-control" required>        
-                <div class="invalid-feedback">Please enter a valid username</div>
-            </div>
-            <div class="form-group">
-                <label for="password">Password</label>
-                <input type="password" name="pass" id="password" class="form-control" required>
-            </div>
-            <button type="submit" name="login" class="mt-3 btn btn-primary">Log In
-            </button>
-            <p class="mt-3"><?php if(isset($customer->response)) { echo $customer->response; } ?></p>
-            <p class="mt-3"><a href="create_account.php">Create Account</a></p>
-
-        </form>    
-        <script>
-            var form = document.querySelector('.needs-validation');
-
-            form.addEventListener('submit', function(event) {
-                if (form.checkValidity() === false) {
-                    event.preventDefault();
-                    event.stopPropagation();
-                }
-                form.classList.add('was-validated')
-            });
-            </script>
-            <?php require_once('layout/footer/footer.php'); ?>      
-
+<h2 class="my-4 text-center">Log In</h2>
+<form method="post" action="" class="create_acc_form needs-validation" novalidate>  
+    <div class="form-group">
+        <label for="username">Username</label>
+        <input type="text" name="user" id="username" class="form-control" required>        
+        <div class="invalid-feedback">Please enter a valid username</div>
+    </div>
+    <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" name="pass" id="password" class="form-control" required>
+    </div>
+    <button type="submit" name="login" class="mt-3 btn btn-primary">Log In
+    </button>
+    <p class="mt-3"><?php if(isset($customer->response)) { echo $customer->response; } ?></p>
+    <p class="mt-3"><a href="create_account.php">Create Account</a></p>
+</form>    
+<script>
+    var form = document.querySelector('.needs-validation');
+    form.addEventListener('submit', function(event) {
+        if (form.checkValidity() === false) {
+            event.preventDefault();
+            event.stopPropagation();
+        }
+        form.classList.add('was-validated')
+    });
+</script>
+<?php require_once('layout/footer/footer.php'); ?>      
 </body>
 </html>

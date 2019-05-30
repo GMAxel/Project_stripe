@@ -1,13 +1,13 @@
 <?php
     session_start();
     require_once('classes/Transaction.php');
-    if(isset($_SESSION['customer_id'])) {
+    if(!isset($_SESSION['customer_id'])) {
         header("Location: login.php");
     }
     // Instatiate Customer
     $transaction = new Transaction();
 
-    // get Customers
+    // get transaction information 
     $transactions = $transaction->getTransactions();
     if(!$transactions) {
         $respose_message = $transaction->response;
@@ -41,7 +41,6 @@
                 <th>Amount</th>
                 <th>Date</th>
                 <th>Status</th>
-
             </tr>
         </thead>
         <tbody>

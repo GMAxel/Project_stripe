@@ -32,6 +32,7 @@ if(!$customer_to_charge) {
         "source" => $token,
     ));
     // Set customer to charge. 
+    $_SESSION['stripe_id'] = $customer->id;  
     $customer_to_charge = $customer->id;
 }
 $charge = \Stripe\Charge::create(array(

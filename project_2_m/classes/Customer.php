@@ -56,7 +56,6 @@ class Customer
 
             }
         }
-       
         // Retrieve Customer Information
         $sql = "SELECT * FROM $this->table WHERE username = :username";
         // prepare
@@ -249,7 +248,6 @@ class Customer
             $get_id->execute();
             $result = $get_id->fetchColumn();
             $_SESSION['stripe_id'] = $result; 
-            echo $_SESSION['stripe_id'];
         }
         return $stmt->rowCount() ? true : false;
     }

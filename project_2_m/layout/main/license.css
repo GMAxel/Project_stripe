@@ -12,3 +12,10 @@
     font-size:25px;
     top: -31px;
 }
+.container_offer {
+    margin:auto;
+    width:500px;
+}
+.card {
+    margin:0;
+}

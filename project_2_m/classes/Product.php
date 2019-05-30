@@ -13,6 +13,7 @@ class Product {
         $this->pdo = $db->pdo;
     }
 
+    // Returns every product from DB. 
     public function getProducts() {
         $sql = "SELECT * FROM $this->table";
         $stmt = $this->pdo->prepare($sql);
@@ -20,6 +21,7 @@ class Product {
         return $stmt->fetchAll(PDO::FETCH_OBJ); 
     }
 
+    // Returns one product from DB.
     public function getProduct($id) {
         $sql = "SELECT * FROM $this->table WHERE id = :id";
         $stmt = $this->pdo->prepare($sql);

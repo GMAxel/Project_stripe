@@ -27,65 +27,64 @@
 <body>
 <?php require_once('layout/nav/nav.php'); ?>   
 
-    <!-- <div class="container"> -->
-        <h2 class="my-4 text-center">Create Account</h2>
-        <form method="post" action="" class="create_acc_form needs-validation" novalidate>
-            <div class="row">
-                <div class="col">
-                    <div class="form-group">
-                        <label for="firstname">First Name</label>
-                        <input type="text" name="first_name" id="firstname" class="form-control" required>        
-                        <div class="invalid-feedback">Enter your first name</div>
-                        <div class="valid-feedback">Accepted</div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="form-group">
-                        <label for="last_name">Last Name</label>
-                        <input type="text" name="last_name" id="last_name" class="form-control" required>        
-                        <div class="invalid-feedback">Enter your last name</div>
-                        <div class="valid-feedback">Accepted</div>
-                    </div>
-                </div>
-            </div>
-            
+<h2 class="my-4 text-center">Create Account</h2>
+<form method="post" action="" class="create_acc_form needs-validation" novalidate>
+    <div class="row">
+        <div class="col">
             <div class="form-group">
-                <label for="email">Email</label>
-                <input type="text" name="email" id="email" class="form-control" required>        
-                <div class="invalid-feedback">Please enter a valid email</div>
-
+                <label for="firstname">First Name</label>
+                <input type="text" name="first_name" id="firstname" class="form-control" required>        
+                <div class="invalid-feedback">Enter your first name</div>
+                <div class="valid-feedback">Accepted</div>
             </div>
+        </div>
+        <div class="col">
             <div class="form-group">
-                <label for="username">Username</label>
-                <input type="text" name="username" id="username" class="form-control" required>        
-                <div class="invalid-feedback">Please enter a valid username</div>
-
+                <label for="last_name">Last Name</label>
+                <input type="text" name="last_name" id="last_name" class="form-control" required>        
+                <div class="invalid-feedback">Enter your last name</div>
+                <div class="valid-feedback">Accepted</div>
             </div>
-            <div class="form-group">
-                <label for="password">Password</label>
-                <input type="password" name="password" id="password" class="form-control" required>
-            </div>
-            <div class="form-check">
-                <input type="checkbox" id="accept-terms" class="form-check-input" required>
-                <label for="accept_terms" class="form-check-label">Accept Terms & Conditions</label>
-            </div>
-            <button type="submit" name="createAcc" class="mt-3 btn btn-primary">Create Account
-            </button>
-            <p class="mt-3"><?php if(isset($customer->response)) { echo $customer->response; } ?></p>
-            <p class="mt-3"><a href="login.php">Log In</a></p>
+        </div>
+    </div>
+    
+    <div class="form-group">
+        <label for="email">Email</label>
+        <input type="text" name="email" id="email" class="form-control" required>        
+        <div class="invalid-feedback">Please enter a valid email</div>
 
-        </form>    
-        <script>
-            var form = document.querySelector('.needs-validation');
+    </div>
+    <div class="form-group">
+        <label for="username">Username</label>
+        <input type="text" name="username" id="username" class="form-control" required>        
+        <div class="invalid-feedback">Please enter a valid username</div>
 
-            form.addEventListener('submit', function(event) {
-                if (form.checkValidity() === false) {
-                    event.preventDefault();
-                    event.stopPropagation();
-                }
-                form.classList.add('was-validated')
-            });
-            </script>
+    </div>
+    <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" name="password" id="password" class="form-control" required>
+    </div>
+    <div class="form-check">
+        <input type="checkbox" id="accept-terms" class="form-check-input" required>
+        <label for="accept_terms" class="form-check-label">Accept Terms & Conditions</label>
+    </div>
+    <button type="submit" name="createAcc" class="mt-3 btn btn-primary">Create Account
+    </button>
+    <p class="mt-3"><?php if(isset($customer->response)) { echo $customer->response; } ?></p>
+    <p class="mt-3"><a href="login.php">Log In</a></p>
+
+</form>    
+<script>
+    var form = document.querySelector('.needs-validation');
+
+    form.addEventListener('submit', function(event) {
+        if (form.checkValidity() === false) {
+            event.preventDefault();
+            event.stopPropagation();
+        }
+        form.classList.add('was-validated')
+    });
+    </script>
 
 </body>
 </html>

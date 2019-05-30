@@ -1,11 +1,12 @@
 <?php
     session_start();
     require_once('classes/Customer.php');
-
+    if(!isset($_SESSION['customer_id'])) {
+        header("Location: login.php");
+    }
     // Instatiate Customer
     $customer = new Customer();
-
-    // get Customers
+    // get Customer infomartion
     $customers = $customer->getCustomer();
 ?>
 
@@ -22,12 +23,10 @@
 </head>
 <body>
 <?php require_once('layout/nav/nav.php'); ?>   
-
  <div class="container mt-4">
     <div class="btn-group" role="group">
         <a href="my_account.php" class="btn btn-primary">Account</a>
         <a href="my_transactions.php" class="btn btn-secondary">Transactions</a>
-
     </div>
     <h2 class="my-4 text-center">Account</h2>
     <table class="table table-striped">
