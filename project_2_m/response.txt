@@ -1,0 +1,10 @@
+- Stripe FELHANTERING!
+- Stripe objektorienterat - så är allt objektorienterat. 
+- Mer generell kod, hur i sådana fall? 
+- Säkerhet inkluderad, säkerhetsklass? 
+    fylld med funktioner som genererar olika resultat. ex: confirm_logged_in som skickar en till login
+    om man inte är inloggad för sidor där det kan vara känsligt. m.m. 
+
+- Tydligare respons struktur. Om det blir fel, så ska användaren alltid få meddelande. Om det blir rätt
+så ska det hända något. 
+

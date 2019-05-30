@@ -3,18 +3,20 @@
     require_once('classes/Customer.php');
     // Instatiate customer
     $customer = new Customer();
+    if(isset($_SESSION['customer_id'])) {
+        header("Location: index.php");
+    }
     if(isset($_GET['license'])) {
         $license = $_GET['license'];
-    }
-    if(isset($license) && isset($_POST['login'])) {
-        header("Location: license.php?id=$license");
-
     }
     if(isset($_POST['login'])) {
         if(isset($license)) {
             header("Location: license.php?id=$license");
+        } else if(isset($_GET['reroute'])) {
+            $page = $_GET['reroute'];
+            header("Location: $page.php");
         } else {
-            header("Location: index.php");
+            header("Location: index.php"); 
         }
     }
 

@@ -1,5 +1,8 @@
 <?php
 session_start();
+if(isset($_SESSION['customer_id'])) {
+    header("Location: login.php");
+}
 require_once('classes/Customer.php');
 require_once('classes/Product.php');
 var_dump($_SESSION['customer_id']);

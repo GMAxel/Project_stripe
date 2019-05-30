@@ -9,33 +9,51 @@ $customer = new Customer();
 // Instantiate filehandler
 $filehandler = new Filehandler();
 // Open and read file, store values in array.
-if (!empty($_FILES['books_file']['tmp_name'])) {
-    if(!isset($_SESSION['customer_id'])) {
-        $message = "You have to log in to upload";
-    } else {
-        $books = $filehandler->read_file();
-        if(!$books) {
-            $message = $filehandler->response;
-            $books = null;
-        } else {
-            $saldo = $customer->remove_license(count($_SESSION['books'])-1);
-            if(!$saldo) {
-                $message = $customer->response;
-                $books = null;
-            }
-        }
-    }
-} 
+// if (!empty($_FILES['books_file']['tmp_name'])) {
+//     if(!isset($_SESSION['customer_id'])) {
+//         $message = "You have to log in to upload";
+//     } else {
+//         $books = $filehandler->read_file();
+//         if(!$books) {
+//             $message = $filehandler->response;
+//             $books = null;
+//         } else {
+//             $saldo = $customer->remove_license(count($_SESSION['books'])-1);
+//             if(!$saldo) {
+//                 $message = $customer->response;
+//                 $books = null;
+//             }
+//         }
+//     }
+// } 
 
-// Ändra innehållet i filen, lagra innehållet i sessionen.  
-if(isset($books)) {
-    $filehandler->write_file($books);
-    $redirect_link = '<a href="upload_csv.php?return">Download file as CSV </a>'; 
+// Open and read values from uploaded file
+if(!isset($_SESSION['customer_id'])) {
+    $message = "<a href='login.php?reroute=upload_csv'>You have to log in to upload</a>";
+} else {
+    if (!empty($_FILES['books_file']['tmp_name'])) {
+        $books = $filehandler->read_file();
+    }
+    // Return a new file with values related to requested books
+    if(isset($_GET['return']) && !is_null($_SESSION['books'])) {
+        $filehandler->upload_file();
+        die;
+    }
 }
-if(isset($_GET['return'])) {
-    $filehandler->upload_edited_file();
-    die;
-}
+
+ 
+
+
+
+// // Ändra innehållet i filen, lagra innehållet i sessionen.  
+// if(isset($books)) {
+//     $filehandler->write_file($books);
+//     $redirect_link = '<a href="upload_csv.php?return">Download file as CSV </a>'; 
+// }
+// if(isset($_GET['return'])) {
+//     $filehandler->upload_edited_file();
+//     die;
+// }
 
 ?>
 <!DOCTYPE html>
@@ -67,7 +85,7 @@ if(isset($_GET['return'])) {
         }
         .product_info {
             min-width:600px;
-            max-width:950px;
+            max-width:1100px;
             margin:auto;
         }
 
@@ -77,7 +95,7 @@ if(isset($_GET['return'])) {
     <?php require_once('layout/nav/nav.php'); ?>       
     <h1 class="my-4 text-center">Upload your CSV file</h1>
     <?php if (isset($message)) : ?>
-    <h5 class="my-4 text-center"><span style="color:red;">Error</span><br><?php echo $message ?></h5>
+    <h5 class="my-4 text-center"><span style="color:red;"></span><br><?php echo $message ?></h5>
     <?php endif; ?>
 
     <div class="form-container">
@@ -92,12 +110,14 @@ if(isset($_GET['return'])) {
                 <thead>
                     <tr>
                         <?php foreach($books[0] as $book_header) :?>
-                            <th><?php echo $book_header ?></th>
+                            <th>
+                                <?php echo $book_header ?>
+                            </th>
                         <?php endforeach; ?>
                     </tr>
                 </thead>
                 <tbody>
-                    <?php for($i = 1; $i < count($books[0]); $i++) : ?>
+                    <?php for($i = 1; $i < count($books); $i++) : ?>
                         <tr>
                             <?php foreach($books[$i] as $val) : ?>
                                 <td><?php echo $val ?></td>

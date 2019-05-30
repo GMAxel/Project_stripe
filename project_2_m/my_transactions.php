@@ -1,12 +1,17 @@
 <?php
     session_start();
     require_once('classes/Transaction.php');
-
+    if(isset($_SESSION['customer_id'])) {
+        header("Location: login.php");
+    }
     // Instatiate Customer
     $transaction = new Transaction();
 
     // get Customers
     $transactions = $transaction->getTransactions();
+    if(!$transactions) {
+        $respose_message = $transaction->response;
+   } 
 ?>
 
 <!DOCTYPE html>
@@ -40,17 +45,23 @@
             </tr>
         </thead>
         <tbody>
-            <?php foreach($transactions as $t): ?>
+            <?php 
+                if(!$transactions) {
+                    $respose_message = $transaction->response;
+                    echo "<h6 class='my-4 text-center'>" . $transaction->response . "</h6>";
+               } else {
+                foreach($transactions as $t): 
+            ?>
                 <tr>
                     <td><?php echo $t->stripe_charge_id ?></td>
                     <td><?php echo $t->name ?></td>
-                    <td><?php echo sprintf('%.2f', $t->amount / 100) .
+                    <td><?php echo $t->amount .
                     ' ' .  strtoupper($t->currency) ?> 
                     </td>
                     <td><?php echo $t->created_at ?></td>
                     <td><?php echo $t->status ?></td>
                 </tr>
-            <?php endforeach; ?>
+            <?php endforeach; } ?>
         </tbody>
     </table>
     <br>

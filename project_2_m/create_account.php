@@ -2,6 +2,9 @@
     session_start();
     require_once('classes/Customer.php');
     // Instatiate customer
+    if(isset($_SESSION['customer_id'])) {
+        header("Location: index.php");
+    }
     $customer = new Customer();
 
     if(isset($_POST['createAcc'])) {

@@ -40,6 +40,10 @@ class Transaction {
         }
     }
     public function getTransactions() {
+        if(is_null($cus_stripe_id = $_SESSION['stripe_id'])) {
+            $this->response = "You haven't purchased anything.";
+            return false;
+        }
         $cus_stripe_id = $_SESSION['stripe_id'];
         $sql = "SELECT t.stripe_charge_id, p.name, t.amount, 
         t.currency, t.created_at, t.status 
@@ -47,7 +51,7 @@ class Transaction {
         JOIN products as p on t.product_id = p.id
         WHERE t.stripe_cus_id = :id;";
         $stmt = $this->pdo->prepare($sql);
-        $stmt->bindValue('id', "cus_F8Kxp5hSsyhEDT");
+        $stmt->bindValue('id', $cus_stripe_id);
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_OBJ);
         return $result;

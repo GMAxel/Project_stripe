@@ -13,7 +13,7 @@ class Charge {
     public function __construct() 
     {
         $db = new Database;
-        $this->pdo = $this->db->pdo;
+        $this->pdo = $db->pdo;
         \Stripe\Stripe::setApiKey('sk_test_mblcMK40UNMGgKaV6L91oWT8008qrOEmP5');
     }
 
